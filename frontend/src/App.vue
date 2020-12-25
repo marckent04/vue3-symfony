@@ -1,19 +1,37 @@
 <template>
   <div>
-    <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <h2>{{ books }}</h2>
+    <router-view />
   </div>
 </template>
 
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+<script lang="ts">
+import { defineComponent, watch } from 'vue';
+import { provide } from 'vue'
+import {  useResult } from '@vue/apollo-composable'
+import client from './plugins/graphClient'
+import {useBookGraph} from './composition/graphql/books'
+
+export default defineComponent({
+  name: 'Home',
+  setup() {
+    //  provide(DefaultApolloClient, client)
+    const {getBooks} = useBookGraph()
+
+    let books = getBooks();
+
+    watch(() => books, (newValue: any) => {
+      console.log(newValue);
+      
+    })
+    return {
+      books,
+    }
+  }
+});
+</script>
+
+<style lang="stylus" scoped>
+
 </style>
+
