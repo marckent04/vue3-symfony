@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { isRuntimeEnvironmentConfigured, configureRuntimeEnvironment, setOutputPath, isProduction, getWebpackConfig } = require('@symfony/webpack-encore');
 
+
+
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!isRuntimeEnvironmentConfigured()) {
@@ -75,4 +77,7 @@ setOutputPath('public/build/')
     //.autoProvidejQuery()
 ;
 
-module.exports = getWebpackConfig();
+const config = getWebpackConfig()
+
+// config.plugins.push("@babel/plugin-transform-modules-commonjs")
+module.exports = config;

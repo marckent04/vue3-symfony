@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-es2016": "^7.0.0-beta.53",
     "@symfony/webpack-encore": "^0.32.0",
